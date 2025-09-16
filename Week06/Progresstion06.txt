@@ -1,0 +1,23 @@
+Progression 06 – โปรแกรมQuotes (Arrays, Objects, และ Functions)
+ให้ สร้าง function:
+   - addQuote(quote): เพิ่ม object ของQuotesใหม่ลงใน array --> quotes.push(quote)
+   
+   - deleteQuote(id): ลบQuotesตาม id (ใช้ findIndex เพื่อหาตำแหน่งของ object ที่มี ค่าid ตรงกับ id, จากนั้น ใช้ method splice
+   ถ้าหากหาข้อมูลเจอ บรรทัดนี้จะทำการลบข้อมูลนั้นออกจากอาร์เรย์โดยตรง)
+   let index = quotes.findIndex(q => q.id === id)
+    if(index !== -1) {
+        quotes.splice(index, 1)
+    }
+
+   - updateQuote(id, updatedQuote): แก้ไข content & author ของ Quotesตาม id (ใช้ forOf loop พื่อวนลูปทุก element ใน array quotes
+   ตรวจสอบว่า id ของ quote ปัจจุบัน (item.id) ตรงกับ id ที่ต้องการอัปเดตหรือไม่
+   ถ้าใช่ จะทำการแก้ไขค่า property --> ใช้ for-in เช็กว่า object updatedQuote มี property content,
+    ถ้ามีอัปเดต item.content เป็นค่าจาก updatedQuote.content), ถ้า updatedQuote มี authorเปลี่ยนค่า item.author เป็นค่าจาก updatedQuote.author
+    for (const item of quotes) {
+    if(item.id === id) {
+       if ('content' in updatedQuote) item.content = updatedQuote.content;
+      if ('author' in updatedQuote) item.author = updatedQuote.author;
+    }
+  }
+
+   - getAllQuotes(): คืนค่าQuotesทั้งหมดใน array
