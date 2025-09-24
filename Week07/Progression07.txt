@@ -1,0 +1,42 @@
+Exercise 1
+ให้ทำการสร้างและจัดการ DOM Element ด้วย JavaScript
+<div id="container">
+    <p id="mytext">Hello world!</p>
+  </div>
+กำหนดมาใน html ให้id=containerอยู๋ใน div และสร้าง <p> elementด้วย document.createElement()
+จากนั้น กำหนด attribute (setAttribute), เปลี่ยนสีข้อความที่เพิ่มมาด้วยและแก้ไขข้อความด้วย textContent
+pElement.setAttribute("mytext", "Welcome")
+pElement.setAttribute("style", "color: green")
+pElement.textContent = 'Welcome'
+
+และเพิ่มnode children(pElement) ไปยัง parentnode(divElement)
+divElement.appendChild(pElement)
+
+Exercise 2
+ให้เพิ่มข้อมูลลงใน html 
+กำหนด fruits เป็นarrayในJavaScript ---> const fruits = ["Apple", "Banana", "Mango"];
+สร้าง parameter container เพื่อเก็บค่า id = "fruits-list" ไว้ในนั้น
+const container = document.getElementById("fruits-list")
+และสร้าง <ul> element ด้วย document.createElement()
+
+ใช้ forEach() เพื่อวน array (fruits)
+สร้าง <li> element สำหรับแต่ละผลไม้ และใช้ appendChild เพิ่มลงใน <ul>
+fruits.forEach((fruit) => {
+    const li = document.createElement("li")
+    li.textContent = fruit
+    ul.appendChild(li)
+})
+
+
+Exercise 3
+เข้าถึง node และ element ที่มีอยู่แล้วใน DOM
+    <div id="wrapper">
+    <h2>Title</h2>
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+  </div>
+สร้าง parameter divElement เพื่อเก็บค่า id = "wrapper" ด้วย document.getElementById("wrapper")
+กำหนดให้ divElement มีค่าเป็น array และใช้ forEachวนลูป
+ใช้ firstElementChild เพื่อเข้าถึงลูกตัวแรกของ div
+ใช้ nextElementSibling เพื่อหา element ถัดไป
+ใช้ nodeName เพื่อตรวจสอบชนิดของ node
