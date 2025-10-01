@@ -1,0 +1,30 @@
+# Lesson 2: DOM Manipulation
+ให่เขียนและเรียกใช้ฟังก์ชันจากไฟล์ module (import/export)
+import { addQuote, getAllQuotes  } from "./quote.js"
+
+1. เรียกใช้ฟังก์ชัน addQuote(content, author) เพื่อเพิ่ม quote ใหม่
+2. เรียกใช้ฟังก์ชัน getAllQuotes() เพื่อดึง quote ทั้งหมด
+3. เขียนฟังก์ชัน renderQuotes()
+   - เคลียร์ข้อมูลเก่าที่อยู่ใน <div id="quote-list"> กำหนด quoteListที่มี id="quote-list" และ 
+   กำหนด quoteChild เพื่อเข้าไปเคลียรตัวที่เป็น child ของ <div>
+    const quoteList = document.getElementById('quote-list')
+    const quoteChild = quoteList.children
+    Array.from(quoteChild).forEach((quote) => {
+        quoteList.removeChild(quote)
+    })
+
+    let quotes = getAllQuotes()
+
+   - จากนั้นใช้ForEach วนลูป quotes ทั้งหมด แล้วสร้าง <p> element
+   - แต่ละ <p> แสดงผลเป็น: "content" — author
+    quotes.forEach((ele) => {
+        const pElement = document.createElement('p')
+        pElement.textContent = `"${ele.content}" - ${ele.author}`   
+        quoteList.appendChild(pElement)
+    })
+4. เพิ่ม quote อย่างน้อย 3 อัน แล้วเรียก renderQuotes() เพื่อแสดงผล
+addQuote('Stay hungry, stay foolish.', 'Steve Jobs')
+addQuote('Do or do not. There is no try.', 'Yoda')
+addQuote('Simplicity is the ultimate sophistication.', 'Leonardo da Vinci')
+getAllQuotes()
+renderQuotes()
