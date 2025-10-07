@@ -1,0 +1,64 @@
+1. Validation Create Account
+กำหนด parameter 
+let username = document.getElementById("username");
+let email = document.getElementById("email");
+let password= document.getElementById("password");
+let confirmPassword = document.getElementById("confirm-password");
+let submitButton = document.getElementById('submit');
+let message = document.querySelector('p');
+เพื่อให้เข้าถึง DOM element ด้วย getElementById และ querySelector ตามในแต่ละ id ที่กำหนดมาใน html
+
+และดักจับ event ของ user("click") ด้วย addEventListener, กำหนดตัวแปร (e), ป้องกันการ submit form --> e.preventDefault()
+
+1.ตรวจสอบโดยใช้ if-else
+ตรวจสอบว่าผู้ใช้กรอกข้อมูลครบทุก field หรือไม่ โดยให้เช็คว่า 
+username, email, password, confirmPassword เป็นค่าว่างไหมม ถ้าว่างขึ้น "Missing some values, Please try again!"
+เป็นตัวอักษรสีแดง
+if (username.value.trim() === "" || email.value.trim() === "" || password.value.trim() === "" ||
+    confirmPassword.value.trim() === "") {
+        message.textContent = "Missing some values, Please try again!";
+        message.style.color = "red";
+    }
+
+2.ถ้า password และ confirm password ไม่ตรงกัน ให้แจ้งเตือน --> "Password and Confirm Password do not match."
+เป็นตัวอักษรสีแดง
+else if (password.value !== confirmPassword.value) {
+        message.textContent = "Password and Confirm Password do not match.";
+        message.style.color = "red";
+    }
+
+3.ถ้าข้อมูลครบและถูกต้อง จะแสดงข้อความยืนยัน --> "Your data is completed!
+"
+เป็นตัวอักษรสีเขียว
+else {
+        message.textContent = "Your data is completed!";
+        message.style.color = "green";
+    }
+
+-----------------------------------------------------------------
+
+2.Capture Event on keyboard
+กำหนด parameter
+let input = document.getElementById("keyInput");
+let div = document.getElementById("keyLog"); 
+ตามในแต่ละ id ที่กำหนดมาใน html
+
+ดักจับ event ของ keyboard ด้วย addEventListener และ event type เป็น 'keypress' เพราะต้องการจับเฉพาะตัวอักษรทีละตัว
+กำหนดตัวแปร (e)
+สร้าง element ใหม่ เป็น <p> ด้วย document.createElement()
+let p = document.createElement('p');
+
+ตรวจสอบโดยใช้ if-else
+ถ้าหากยังไม่กดปุ่ม "Enter"ให้พิมพ์ข้อความเป็น You pressed: {...เป็นข้อความที่เราพิมพ์ในkeyboard} มาเก็บไว้ใน p.innerHTML
+if(e.key !== 'Enter') {
+        p.innerHTML = `You pressed: ${e.key}`;
+        console.log(p.innerHTML);
+    }
+
+นอกเหนือจากนั้นถ้ากด"Enter" ให้พิมพ์ข้อความเป็น You pressed: Enter และเป็นข้อความสีฟ้า  มาเก็บไว้ใน p.innerHTML
+else {
+        p.innerHTML = `You pressed: Enter`
+        p.style.color = "blue"
+        console.log(p.innerHTML);   
+    }
+จากนั้นใช้ appendChild() เพื่อ เพิ่ม <p> ลงใน <div id="keyLog">
